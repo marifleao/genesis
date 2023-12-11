@@ -1,2 +1,2 @@
 # Genesis
-Jogo Genesis utilizando de forma introdutória: HTML, CSS, JavaScript
+Jogo Genesis utilizando de forma introdutória: HTML, CSS, JavaScript.
