@@ -1,5 +1,5 @@
-let order = [];
-let clickedOrder = [];
+let ordem = [];
+let ordemCliquesUsuario = [];
 let score = 0;
 
 /*
@@ -15,20 +15,20 @@ const red = document.querySelector('.red');
 const green = document.querySelector('.green');
 
 //Função para criar a ordem da cor
-let shuffleOrder = () => {
+let criarOrdem = () => {
     //Sorteia a cor de 0 a 3
-    let colorOrder = Math.floor(Math.random() * 4);
+    let ordemCores = Math.floor(Math.random() * 4);
     //Atribuir o index com a cor sorteada
-    order[order.length] = colorOrder;
-    clickedOrder = [];
+    ordem[ordem.length] = ordemCores;
+    ordemCliquesUsuario = [];
 
-    for(let i in order){
-        let elementColor = createColorElement(order[i]);
-        lightColor(elementColor, Number(i) + 1);
+    for(let i in ordem){
+        let elementColor = criarOrdemCores(ordem[i]);
+        acendeCor(elementColor, Number(i) + 1);
     }
 }
 //Acender a cor sorteada
-let lightColor = (element, number) => {
+let acendeCor = (element, number) => {
     number = number * 500;
     setTimeout(() => {
         element.classList.add('selected');
@@ -39,32 +39,32 @@ let lightColor = (element, number) => {
 }
 
 //Checa se a ordem de cliques é a mesma criada pelo jogo
-let checkOrder = () =>{
-    for(let i in clickedOrder) {
-        if(clickedOrder[i] != order[i]){
-            gameOver();
+let checaOrdemCliques = () =>{
+    for(let i in ordemCliquesUsuario) {
+        if(ordemCliquesUsuario[i] != ordem[i]){
+            fimJogo();
             break;
         }
     }
-    if(clickedOrder.length == order.length){
+    if(ordemCliquesUsuario.length == ordem.length){
         alert(`Pontuação: ${score}!\n Você acertou! Iniciando o próximo nível!`);
-        nextLevel();
+        proximoNivel();
     }
 }
 
 //Função para o clique do usuário
 let click = (color) => {
-    clickedOrder[clickedOrder.length] = color;
-    createColorElement(color).classList.add('selected');
+    ordemCliquesUsuario[ordemCliquesUsuario.length] = color;
+    criarOrdemCores(color).classList.add('selected');
 
     setTimeout(() => {
-        createColorElement(color).classList.remove('selected');
-        checkOrder();
+        criarOrdemCores(color).classList.remove('selected');
+        checaOrdemCliques();
     },250);
 }
 
 //Função que retorna a cor
-let createColorElement = (color) =>{
+let criarOrdemCores = (color) =>{
     if(color == 0){
         return green;
     } else if(color == 1){
@@ -77,26 +77,26 @@ let createColorElement = (color) =>{
 }
 
 //Funão para próximo Nível do jogo
-let nextLevel = () => {
+let proximoNivel = () => {
     score++;
-    shuffleOrder();
+    criarOrdem();
 }
 
 //Função para o Game Over
-let gameOver = () => {
+let fimJogo = () => {
     alert(`Pontuação: ${score}!\nVocê perdeu!\nClique em OK para iniciar um novo jogo.`);
-    order = [];
-    clickedOrder = [];
+    ordem = [];
+    ordemCliquesUsuario = [];
 
-    playGame();
+    inicioJogo();
 }
 
 //Função para iniciar o jogo
-let playGame = () => {
+let inicioJogo = () => {
     alert('Bem vindo ao Genesis!\nIniciando um novo jogo!');
     score = 0;
 
-    nextLevel();
+    proximoNivel();
 }
 
 //Ativar o clique das cores
@@ -106,4 +106,4 @@ yellow.onclick = () => click(2);
 blue.onclick = () => click(3);
 
 //Inicio do jogo
-playGame();
+inicioJogo();
