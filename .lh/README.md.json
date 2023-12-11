@@ -1,0 +1,18 @@
+{
+    "sourceFile": "README.md",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1702301517235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1702301517235,
+            "name": "Commit-0",
+            "content": "# Genesis\nJogo Genesis utilizando de forma introdutória: HTML, CSS, JavaScript\n"
+        }
+    ]
+}
